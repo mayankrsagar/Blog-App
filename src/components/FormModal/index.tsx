@@ -38,39 +38,40 @@ const FormModal: React.FC<FormModalProps> = ({ setModal, formData, setFormData, 
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
+// Handle form submission
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError(null);
 
-    // If editing, we assume the formData contains the id; if adding, generate a new id.
-    const newBlog = edit && formData.id
-      ? { ...formData }
-      : {
-          id: uuidv4(),
-          title: formData.title,
-          description: formData.description,
-        };
+  // Construct newBlog ensuring 'id' is defined in edit mode
+  const newBlog = edit
+    ? { id: formData.id!, title: formData.title, description: formData.description }
+    : {
+        id: uuidv4(),
+        title: formData.title,
+        description: formData.description,
+      };
 
-    try {
-      if(edit){
-        await dispatch(updateBlogDataAsync(newBlog)).unwrap();
-        console.log(newBlog);
-      }else{
-        await dispatch(addBlogDataAsync(newBlog)).unwrap();
-      }
-      
-    } catch (err) {
-      console.error(err);
-      setError("Failed to add blog. Please try again.");
-    } finally {
-      setIsLoading(false);
-      setFormData({ title: "", description: "" });
-      setModal(false);
-      setEdit(false);
+  try {
+    if (edit) {
+      await dispatch(updateBlogDataAsync(newBlog)).unwrap();
+      console.log("Updated blog:", newBlog);
+    } else {
+      await dispatch(addBlogDataAsync(newBlog)).unwrap();
+      console.log("Added blog:", newBlog);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Failed to add blog. Please try again.");
+  } finally {
+    setIsLoading(false);
+    setFormData({ title: "", description: "" });
+    setModal(false);
+    setEdit(false);
+  }
+};
+
 
   const handleClose = (): void => {
     setModal(false);
