@@ -33,7 +33,7 @@ export const getBlogDataAsync = createAsyncThunk<
   async (_, { rejectWithValue }) => {
     try {
       const response = await 
-      fetch("https://blog-app-kohl-chi.vercel.app/",
+      fetch("https://blog-app-kohl-chi.vercel.app/api/get-blogs",
          {
         method: "GET",
         cache: "no-cache",
