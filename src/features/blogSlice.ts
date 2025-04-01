@@ -22,7 +22,8 @@ const initialState: BlogState = {
   error: null,
 };
 
-// Async thunk to fetch blog data from the API
+// Async thunk to fetch blog data from the API\
+// replaced the http://localhost:3000 with vercel link in fetch
 export const getBlogDataAsync = createAsyncThunk<
   Blog[],         // Returned data type: array of Blog objects
   void,           // No argument is expected
@@ -31,7 +32,9 @@ export const getBlogDataAsync = createAsyncThunk<
   "blog/getBlogDataAsync",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch("/api/get-blogs", {
+      const response = await 
+      fetch("https://blog-app-kohl-chi.vercel.app/",
+         {
         method: "GET",
         cache: "no-cache",
       });
