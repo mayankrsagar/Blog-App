@@ -30,7 +30,7 @@ Below is a minimal README snippet that focuses on the project details, your GitH
 ---
 
 - **Explore the Code on GitHub:** [https://github.com/your-username/blog-app)](https://github.com/mayankrsagar/Blog-App.git)
-- **View the Deployed App on Vercel:** [https://your-app.vercel.app](https://your-app.vercel.app)
+- **View the Deployed App on Vercel:** ([Blog-App](https://blog-app-kohl-chi.vercel.app/))
 
 ## Getting Started
 
